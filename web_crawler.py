@@ -15,4 +15,7 @@ and they lived at the bottom of a well.</p>
 
 soup = BeautifulSoup(html_doc, 'html.parser')
 
-print(soup.prettify())
+# print(soup.prettify())
+
+print("Find Tag <b>", soup.b)
+print("Find Tag <a>", soup.a)
