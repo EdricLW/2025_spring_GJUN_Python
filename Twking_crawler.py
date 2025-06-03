@@ -1,4 +1,5 @@
 # Step 1. 取回 HTML
+from collections import Counter
 from pprint import pprint
 from bs4 import BeautifulSoup
 import requests  # request 是一個 Module 做網路溝通用的
@@ -26,3 +27,21 @@ for booktop in booktops:
         print(top["href"], top.string.strip())  # 連結與小說名稱
 
 pprint(booktop_data)
+
+# Step 5. 取排行榜交集
+
+top10_counter = Counter()
+
+for booktop_name in booktop_data:
+    print("Booktop:", booktop_name)
+    print("Booktop value:")
+    pprint(booktop_data[booktop_name])
+    top10_counter.update(booktop_data[booktop_name])  # update top10
+    print()
+
+# pprint(top10_counter.most_common(3))  # 取前三名資料
+pprint(top10_counter.most_common(1)[0])  # 取第一名資料，回傳(資料, 出現次數)
+top1, top1_count = top10_counter.most_common(1)[0]
+top1_url, top1_name = top1
+print(top1_url)
+print(top1_name)
